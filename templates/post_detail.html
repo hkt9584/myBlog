@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">文章列表</a></li>
-    <li class="breadcrumb-item active" aria-current="page">
-      {{ post.title }}
-    </li>
-  </ol>
-</nav>
 <div class="container mt-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a class="text-breadcrumb" href="/">文章列表</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        {{ post.title }}
+      </li>
+    </ol>
+  </nav>
   <h1 class="card-title fs-3 text-secondary-emphasis">{{ post.title }}</h1>
   <hr />
   <p class="card-text text-body-secondary">{{ post.content }}</p>

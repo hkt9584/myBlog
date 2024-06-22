@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from post.views import PostListView, PostDetailView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', PostListView.as_view()),
     path('<pk>', PostDetailView.as_view())
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
