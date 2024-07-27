@@ -1,6 +1,10 @@
-{% extends "base_generic.html" %}
+{% extends "base.html" %}
 
-{% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
+{% block body %}
+<div class="p-5 text-center bg-success text-dark bg-opacity-10">
+  <h1 class="text-body-emphasis">登出成功</h1>
+  <p class="lead">
+    <a href="{% url 'login'%}">點我再次登入😶</a>
+  </p>
+</div>
 {% endblock %}
