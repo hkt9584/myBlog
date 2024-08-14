@@ -4,8 +4,8 @@ from .models import Post
 
 from django.contrib.auth import logout
 
-def logout_view(request):
-    logout(request)
+# class PostAddView(request):
+    # logout(request)
 
 class PostListView(ListView):
     model = Post
