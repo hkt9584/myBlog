@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="container mt-5 text-body-secondary">
+        <h1>我的文章</h1>
+        {% comment %} add create button {% endcomment %}
+        <div class="text-end">
+            <a href="/post/create" class="btn btn-primary">新增文章</a>
+        </div>
+        <table class="table table-striped" style="table-layout: fixed">
+            <thead>
+            <tr>
+                <th>標題</th>
+                <th>內容</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in object_list %}
+                <tr>
+                    <td class="{% if post.author == user %}fs-5 text-secondary-emphasis{% else %}fs-6 text-secondary{% endif %}">
+                        {{ post.title }}
+                    </td>
+                    <td class="text-body-secondary text-truncate">
+                        {{ post.content }}
+                    </td>
+                    <td>
+                        <a href="/post/{{ post.id }}" class="btn btn-outline-success btn-sm rounded-5">閱讀更多</a>
+                        <a href="/post/update/{{ post.id }}" class="btn btn-outline-primary btn-sm rounded-5">修改</a>
+                        <form action="/post/delete/{{ post.id }}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-5">刪除</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% include "pagination.html" %}
+    </div>
+{% endblock %}

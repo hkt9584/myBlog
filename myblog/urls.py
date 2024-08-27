@@ -16,17 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from post.views import PostListView, PostDetailView
+from post.form import PostForm
+from post.views import PostListView, PostDetailView, UserPostListView
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.urls import include, path
+from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', PostListView.as_view()),
-    path('<pk>', PostDetailView.as_view())
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += [
+    path('', PostListView.as_view(), name='post_list'),
+    path('post/<int:pk>', PostDetailView.as_view(), name='post_detail'),
+    path('post/create/', PostForm.post_create, name='post_create'),
+    path('post/update/<int:pk>', PostForm.post_update, name='post_update'),
+    path('post/delete/<int:pk>', PostForm.post_delete, name='post_delete'),
+    path('post/user/', UserPostListView.as_view(), name='user_posts'),
     path('accounts/', include('django.contrib.auth.urls')),
-  
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if not settings.TESTING:
+    urlpatterns = [
+        *urlpatterns,
+    ] + debug_toolbar_urls()

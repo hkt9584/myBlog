@@ -12,13 +12,19 @@
                 </div>
 
                 <div class="card-body">
-                    <p class="card-text text-body-secondary">{{ post.content }}</p>
-                    <a href="/{{ post.id }}" class="btn btn-outline-success btn-sm float-end rounded-5">閱讀更多</a>
+                    <p class="card-text text-body-secondary text-truncate">{{ post.content|safe }}</p>
+                    <a href="/post/{{ post.id }}" class="btn btn-outline-success btn-sm rounded-5 float-end">
+                        閱讀更多
+                    </a>
                 </div>
-
+                <div class="card-footer text-end bg-transparent border-top-0 pt-0">
+                    <span class="badge rounded-pill bg-success">作者: {{ post.author }}</span>
+                    <span class="badge rounded-pill bg-success">發表時間: {{ post.created_date }}</span>
+                </div>
             </div>
             </div>
         {% endfor %}
         </div>
+        {% include "pagination.html" %}
     </div>
 {% endblock %}
