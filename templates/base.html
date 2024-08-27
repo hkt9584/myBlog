@@ -14,6 +14,9 @@
       <div class="container">
         <a class="navbar-brand text-secondary fw-bolder" href="/">YELLOW BLOG</a>
         {% if user.is_authenticated %}
+        <li class="nav-item">
+          <a class="btn btn-success btn-sm" href="{% url 'add_post' %}">新增文章</a>
+      </li>
         <div class="flex-shrink-0 dropdown">
           <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://images.hahow.in/images/618f8885a307ca00076a9f75" alt="mdo" width="32" height="32" class="rounded-circle">

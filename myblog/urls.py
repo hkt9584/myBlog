@@ -14,9 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django import views
 from django.contrib import admin
 from django.urls import include, path
-from post.views import PostListView, PostDetailView
+from post.views import PostListView, PostDetailView ,add_post
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,5 +29,5 @@ urlpatterns = [
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
-  
+    path('add_post/', add_post, name='add_post'),
 ]
